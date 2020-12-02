@@ -1,16 +1,37 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import {AppBar, Card, CardContent, Grid, IconButton, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Button, Card, CardContent, Grid, IconButton, Toolbar, Typography} from "@material-ui/core";
 import Icon from "@mdi/react";
 import {mdiThermometer, mdiWater} from '@mdi/js';
 import {Bar} from "react-chartjs-2";
+import {display} from "@material-ui/system";
 
-const data = {
-    labels: ['Red'],
+const data2 = {
+    labels: ['aaa'],
     datasets: [
         {
-            label: '',
+            label:'aaa',
             data: [59],
+            barThickness: 35,
+            backgroundColor: [
+                'rgb(99,224,255)'
+            ],
+            borderColor: [
+                'rgba(99,224,255 1)'
+            ],
+            borderWidth: 0,
+            borderSkipped:'end',
+        },
+    ],
+}
+
+const data = {
+    labels: ['aaa'],
+    datasets: [
+        {
+            label:'aaa',
+            data: [59],
+            barThickness: 35,
             backgroundColor: [
                 'rgba(255, 99, 132, 255)'
             ],
@@ -18,14 +39,31 @@ const data = {
                 'rgba(255, 99, 132, 1)'
             ],
             borderWidth: 0,
+            borderSkipped:'end',
         },
     ],
 }
 const options = {
+    maintainAspectRatio: true,
+    responsive: true,
+    legend:{
+        display:false,
+    },
     scales: {
-        yAxes: [
+        xAxes:[
             {
                 ticks: {
+                    display:false,
+                }
+            }
+        ],
+        yAxes: [
+            {
+                gridLines: {
+                    display:false
+                },
+                ticks: {
+                    display: true,
                     max: 100,
                     beginAtZero: true,
                 },
@@ -33,6 +71,7 @@ const options = {
         ],
     },
 }
+
 
 export default function Home() {
     return (
@@ -42,7 +81,6 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main className={styles.main}>
-
                 <AppBar position="fixed">
                     <Toolbar>
                         <IconButton
@@ -60,21 +98,44 @@ export default function Home() {
                         </IconButton>
                     </Toolbar>
                 </AppBar>
-                <Card variant={"outlined"}>
-                    <CardContent>
-                        <Typography variant={"h6"}>
-                            <Icon path={mdiWater}
-                                  size={1}
-                            />
-                            Humidity
-                        </Typography>
-                        <Typography variant={"h4"} align={"center"}>
-                            59%
-                        </Typography>
-                        <Bar data={data} options={options}>
-                        </Bar>
-                    </CardContent>
-                </Card>
+                <Grid container spacing={4}>
+                    <Grid item>
+                        <Card variant={"outlined"} className={styles.fullCard}>
+                            <CardContent>
+                                <Typography variant={"h6"}>
+                                    <Icon path={mdiWater}
+                                          size={1}
+                                    />
+                                    Humidity
+                                </Typography>
+                                <Typography variant={"h4"} align={"center"}>
+                                    59%
+                                </Typography>
+                                <Bar data={data2} options={options} height={150} width={60} redraw={true}/>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+
+                    <Grid item>
+                        <Card variant={"outlined"} className={styles.fullCard}>
+                            <CardContent>
+                                <Typography variant={"h6"}>
+                                    <Icon path={mdiWater}
+                                          size={1}
+                                    />
+                                    Humidity
+                                </Typography>
+                                <Typography variant={"h4"} align={"center"}>
+                                    59%
+                                </Typography>
+                                <Bar data={data2} options={options} height={150} width={60} redraw={true} ref={(reference) => this.chart = reference }/>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                </Grid>
+                <Button variant="contained" onClick={() => { data2.datasets[0].data[0]+=10;}}>Default</Button>
+
+                <Button variant="contained" onClick={() => {chart.update() }}>Default</Button>
             </main>
 
             <footer className={styles.footer}>
