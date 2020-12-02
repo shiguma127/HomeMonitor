@@ -5,6 +5,22 @@ import Icon from "@mdi/react";
 import {mdiThermometer, mdiWater} from '@mdi/js';
 import {Bar} from "react-chartjs-2";
 import {display} from "@material-ui/system";
+import React from "react";
+
+class Chart extends React.Component<any,any>{
+    constructor(props) {
+        super(props);
+        this.state = {data:data2}
+    }
+    render() {
+        return (
+            <div>
+                <Bar data={this.state.data} options={options} height={150} width={60} redraw/>
+                <Button variant="contained" onClick={()=>{this.setState({data:data})}}>changeData</Button>
+            </div>
+        );
+    };
+}
 
 const data2 = {
     labels: ['aaa'],
@@ -30,7 +46,7 @@ const data = {
     datasets: [
         {
             label:'aaa',
-            data: [59],
+            data: [100],
             barThickness: 35,
             backgroundColor: [
                 'rgba(255, 99, 132, 255)'
@@ -128,14 +144,12 @@ export default function Home() {
                                 <Typography variant={"h4"} align={"center"}>
                                     59%
                                 </Typography>
-                                <Bar data={data2} options={options} height={150} width={60} redraw={true} ref={(reference) => this.chart = reference }/>
+                                <Chart/>
                             </CardContent>
                         </Card>
                     </Grid>
                 </Grid>
-                <Button variant="contained" onClick={() => { data2.datasets[0].data[0]+=10;}}>Default</Button>
-
-                <Button variant="contained" onClick={() => {chart.update() }}>Default</Button>
+                <Button variant="contained" onClick={() => { data2.datasets[0].data[0]=30}}>Default</Button>
             </main>
 
             <footer className={styles.footer}>
