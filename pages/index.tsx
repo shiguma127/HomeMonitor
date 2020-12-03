@@ -6,22 +6,11 @@ import {mdiThermometer, mdiWater} from '@mdi/js';
 import {Bar} from "react-chartjs-2";
 import {display} from "@material-ui/system";
 import React from "react";
+import BarCard from "./components/BarCard";
 
-class Chart extends React.Component<any,any>{
-    constructor(props) {
-        super(props);
-        this.state = {data:data2}
-    }
-    render() {
-        return (
-            <div>
-                <Bar data={this.state.data} options={options} height={150} width={60} redraw/>
-                <Button variant="contained" onClick={()=>{this.setState({data:data})}}>changeData</Button>
-            </div>
-        );
-    };
+const func = function () {
+
 }
-
 const data2 = {
     labels: ['aaa'],
     datasets: [
@@ -62,6 +51,7 @@ const data = {
 const options = {
     maintainAspectRatio: true,
     responsive: true,
+    animation:false,
     legend:{
         display:false,
     },
@@ -131,25 +121,11 @@ export default function Home() {
                             </CardContent>
                         </Card>
                     </Grid>
-
                     <Grid item>
-                        <Card variant={"outlined"} className={styles.fullCard}>
-                            <CardContent>
-                                <Typography variant={"h6"}>
-                                    <Icon path={mdiWater}
-                                          size={1}
-                                    />
-                                    Humidity
-                                </Typography>
-                                <Typography variant={"h4"} align={"center"}>
-                                    59%
-                                </Typography>
-                                <Chart/>
-                            </CardContent>
-                        </Card>
+                        <BarCard data={data2} options={options}> </BarCard>
                     </Grid>
                 </Grid>
-                <Button variant="contained" onClick={() => { data2.datasets[0].data[0]=30}}>Default</Button>
+                <Button variant="contained" onClick={function() { data2.datasets[0].data[0]+=1}}>Default</Button>
             </main>
 
             <footer className={styles.footer}>
