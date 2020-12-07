@@ -1,8 +1,23 @@
-[
+{
+  "configs" : [
     {
-        "label":"温度",
-        "unit":"℃",
-        "range":[0,100],
-        "color":"#ff00ff"
+      "label": "温度",
+      "unit": "℃",
+      "range": {
+        "min": 0,
+        "max": 100
+      },
+      "color": "#ff00ff"
+    },
+    {
+      "label": "湿度",
+      "unit": "%",
+      "range": {
+        "min": 0,
+        "max": 100
+      },
+      "color": "#00FFFF"
     }
-]
+  ]
+}
+
