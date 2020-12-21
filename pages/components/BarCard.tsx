@@ -3,16 +3,18 @@ import React from "react";
 import {Card, CardContent, Typography} from "@material-ui/core";
 import styles from "../../styles/Home.module.css";
 
+let label = ""
+
 const BarCard = (props) => {
     return (
         <div>
-            <Card variant={"outlined"} className={styles.fullCard} >
+            <Card variant={"outlined"} className={styles.fullCard}>
                 <CardContent>
                     <Typography variant={"h6"}>
-                        {props.data.datasets[0].label}
+                        {props.label}
                     </Typography>
                     <Typography variant={"h3"} align={"center"}>
-                        {props.data.datasets[0].data[0]}{props.unit}
+                        {props.current}{props.unit}
                     </Typography>
                     <div>
                         <Bar data={props.data} options={props.options} height={300} width={150} redraw/>
@@ -20,6 +22,6 @@ const BarCard = (props) => {
                 </CardContent>
             </Card>
         </div>
-    );
+    )
 }
 export default BarCard

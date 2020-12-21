@@ -57,6 +57,12 @@ class BarData {
         this.options.scales.yAxes[0].ticks.min=min
         this.options.scales.yAxes[0].ticks.max=max
     }
+    getLabel(){
+        return this.data.datasets[0].label
+    }
+    getCurrentData(){
+        return this.data.datasets[0].data[0]
+    }
 
 }
 
