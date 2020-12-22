@@ -2,6 +2,7 @@
   "configs" : [
     {
       "label": "温度",
+      "id":"ondo",
       "unit": "℃",
       "range": {
         "min": 0,
@@ -11,12 +12,23 @@
     },
     {
       "label": "湿度",
+      "id":"shitsudo",
       "unit": "%",
       "range": {
         "min": 0,
         "max": 100
       },
       "color": "#00FFFF"
+    },
+    {
+      "label": "ワット",
+      "id":"wt",
+      "unit": "W",
+      "range": {
+        "min": 0,
+        "max": 300
+      },
+      "color": "#FFFF00"
     }
   ]
 }
