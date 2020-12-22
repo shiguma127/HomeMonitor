@@ -7,7 +7,7 @@ import React, {useEffect, useState} from "react";
 import BarCard from "./components/BarCard";
 import BarData from "../src/BarData";
 import io from "socket.io-client";
-
+import {func} from "prop-types";
 
 const socket = io('localhost:8080')
 let configs = []
@@ -17,18 +17,25 @@ const Home = () => {
     configs = require('../config/config.json').configs
     const inital = []
     configs.forEach(config => {
-        inital.push(new BarData(config.label, config.color, config.unit, config.range.min, config.range.max))
+        inital.push(new BarData(config.id,config.label, config.color, config.unit, config.range.min, config.range.max))
     })
     const [datas,setDatas] = useState(inital)
-    const add = function (){
+    const add = function (id,value){
         const temp = []
         Object.assign(temp,datas)
-        temp.forEach(data=>data.data.datasets[0].data[0]+=1)
+        const index = temp.findIndex((data)=>data.id===id)
+        temp[index].data.datasets[0].data[0]=value
         setDatas(temp)
+    }
+    const add_t = function (){
+        add("wt",12)
     }
     useEffect(() => {
         socket.on('connect', () => {
             console.log('connected')
+        })
+        socket.on('update',(data)=>{
+            add(data.id,data.value)
         })
     }, [])
     return (
@@ -63,7 +70,7 @@ const Home = () => {
                             </Grid>
                         )
                     })}
-                    <Button onClick={add}>ad</Button>
+                    <Button onClick={add_t}>add</Button>
                 </Grid>
             </main>
             <footer className={styles.footer}>
