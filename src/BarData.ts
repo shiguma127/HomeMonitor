@@ -1,4 +1,5 @@
 class BarData {
+    id=""
     unit =  ""
     options = {
         maintainAspectRatio: false,
@@ -48,7 +49,8 @@ class BarData {
             },
         ],
     };
-    constructor(label,color ,unit,min,max) {
+    constructor(id,label,color ,unit,min,max) {
+        this.id = id
         this.data.labels = [label]
         this.data.datasets[0].label =　label
         this.data.datasets[0].backgroundColor = color

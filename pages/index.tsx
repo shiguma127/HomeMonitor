@@ -27,9 +27,6 @@ const Home = () => {
         temp[index].data.datasets[0].data[0]=value
         setDatas(temp)
     }
-    const add_t = function (){
-        add("wt",12)
-    }
     useEffect(() => {
         socket.on('connect', () => {
             console.log('connected')
@@ -70,17 +67,9 @@ const Home = () => {
                             </Grid>
                         )
                     })}
-                    <Button onClick={add_t}>add</Button>
                 </Grid>
             </main>
             <footer className={styles.footer}>
-                <a
-                    href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Powered by{'         '}
-                </a>
             </footer>
         </div>
     );

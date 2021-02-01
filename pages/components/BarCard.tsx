@@ -3,8 +3,6 @@ import React from "react";
 import {Card, CardContent, Typography} from "@material-ui/core";
 import styles from "../../styles/Home.module.css";
 
-let label = ""
-
 const BarCard = (props) => {
     return (
         <div>

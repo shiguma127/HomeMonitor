@@ -21,12 +21,12 @@
       "color": "#00FFFF"
     },
     {
-      "label": "ワット",
-      "id":"wt",
-      "unit": "W",
+      "label": "バッテリー残量",
+      "id":"btt",
+      "unit": "%",
       "range": {
         "min": 0,
-        "max": 300
+        "max": 100
       },
       "color": "#FFFF00"
     }
